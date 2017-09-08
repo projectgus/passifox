@@ -83,15 +83,16 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 });
 
 
-/**
- * Retrieve Credentials and try auto-login for HTTPAuth requests
- *
- * (Intercepting HTTP auth currently unsupported in Firefox.)
- */
+// Retrieve Credentials and try auto-login for HTTPAuth requests
 if (browser.webRequest.onAuthRequired) {
-	browser.webRequest.onAuthRequired.addListener(httpAuth.handleRequest,
-													{ urls: ["<all_urls>"] }, ["blocking"]
-													);
+	if (isFirefox) {
+		browser.webRequest.onAuthRequired.addListener(httpAuth.handleRequest, 
+			{ urls: ["<all_urls>"] }, ["blocking"]);
+	}
+	else {
+		browser.webRequest.onAuthRequired.addListener(httpAuth.handleRequestChrome, 
+			{ urls: ["<all_urls>"] }, ["asyncBlocking"]);
+	}
 }
 
 /**

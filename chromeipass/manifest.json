@@ -28,6 +28,7 @@
 	"background": {
 		"scripts": [
 			"browser-polyfill.min.js",
+			"global.js",
 			"background/aes.js",
 			"background/cryptoHelpers.js",
 			"background/utf8.js",
@@ -44,6 +45,7 @@
 			"matches": ["http://*/*", "https://*/*"],
 			"js": [
 				"browser-polyfill.min.js",
+				"global.js",
 				"jquery-1.11.1.min.js",
 				"jquery-ui-1.10.2.custom.min.js",
 				"chromeipass.js"
